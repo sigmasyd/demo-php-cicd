@@ -19,6 +19,6 @@ jobs:
           PORT: ${{ secrets.SSH_PORT }}
           KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         with:
-          //source: "site/*"
+          #source: "site/*"
           target: "/var/www/html/demo-php-cicd"
         
