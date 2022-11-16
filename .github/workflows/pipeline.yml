@@ -1,0 +1,24 @@
+name: Deployment Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: SFTP Deploy
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+            username: ${{ secrets.SSH_USER }}
+            server: ${{ secrets.SSH_SERVER }}
+            port: ${{ secrets.SSH_PORT }}
+            ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+            local_path: './*'
+            remote_path: '/var/www/html/demo-php-cicd/'
+            sftpArgs: '-o ConnectTimeout=5'
