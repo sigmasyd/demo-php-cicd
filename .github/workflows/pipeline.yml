@@ -6,7 +6,8 @@ on:
       - master
 
 jobs:
-  deploy:
+  build:
+    name: Build
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
