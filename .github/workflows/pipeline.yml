@@ -7,18 +7,18 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-18.04
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@master
       
-      - name: SCP Deploy
-        uses: appleboy/scp-action@master
-        env:
-          HOST: ${{ secrets.SSH_SERVER }}
-          USERNAME: ${{ secrets.SSH_USER }}
-          PORT: ${{ secrets.SSH_PORT }}
-          KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        with:
-          source: "site/*"
-          target: "/var/www/html/demo-php-cicd"
+      # - name: SCP Deploy
+      #   uses: appleboy/scp-action@master
+      #   env:
+      #     HOST: ${{ secrets.SSH_SERVER }}
+      #     USERNAME: ${{ secrets.SSH_USER }}
+      #     PORT: ${{ secrets.SSH_PORT }}
+      #     KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      #   with:
+      #     source: "site/*"
+      #     target: "/var/www/html/demo-php-cicd"
         
