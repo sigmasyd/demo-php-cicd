@@ -11,14 +11,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-      - name: SFTP Deploy
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+      - name: SCP Deploy
+        uses: appleboy/scp-action@master
+        env:
+          HOST: ${{ secrets.SSH_SERVER }}
+          USERNAME: ${{ secrets.SSH_USER }}
+          PORT: ${{ secrets.SSH_PORT }}
+          KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         with:
-            username: ${{ secrets.SSH_USER }}
-            server: ${{ secrets.SSH_SERVER }}
-            port: ${{ secrets.SSH_PORT }}
-            ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-            local_path: './*'
-            remote_path: '/var/www/html/demo-php-cicd/'
-            sftpArgs: '-o ConnectTimeout=5'
+          //source: "site/*"
+          target: "/var/www/html/demo-php-cicd"
+        
