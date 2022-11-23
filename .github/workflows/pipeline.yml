@@ -10,4 +10,13 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@master
-        
+
+      - name: rsync live
+        uses: burnett01/rsync-deployments@5.2.1
+        with:
+          switches: -avzr --delete
+          path: ./
+          remote_path: /var/www/html/demo-php-cicd
+          remote_host: necaroms.club
+          remote_user: data
+          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}        
